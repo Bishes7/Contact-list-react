@@ -1,7 +1,17 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { useState } from "react";
+import Display from "./components/Display";
+import Form from "./components/Form";
+import UserList from "./components/UserList";
 
 function App() {
+  const [list, setList] = useState([]);
+
+  const addUser = (name) => {
+    setList([...list, name]);
+  };
+
   return (
     <div
       className="wrapper"
@@ -20,20 +30,9 @@ function App() {
           padding: "2rem",
         }}
       >
-        <div className="display">Typing</div>
+        <Form addUser={addUser} />
 
-        <div className="form">
-          <form action="">
-            <input type="text" />
-            <button>Add names</button>
-          </form>
-        </div>
-        <div className="list">
-          <ul>
-            <li>Bishes</li>
-            <li>Umesh</li>
-          </ul>
-        </div>
+        <UserList list={list} />
       </div>
     </div>
   );
